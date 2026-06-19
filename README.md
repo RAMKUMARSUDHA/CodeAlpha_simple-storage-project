@@ -52,68 +52,7 @@ simple-storage-project/
 └── package.json
 ```
 
----
 
-## 📜 Contract Code
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-/**
- * @title  SimpleStorage
- * @notice Demonstrates core Solidity state management:
- *         reading, incrementing, and decrementing an integer.
- * @dev    Solidity ^0.8.0 arithmetic is overflow/underflow-checked
- *         by default — no SafeMath required.
- */
-contract SimpleStorage {
-
-    // ── State variable ───────────────────────────────────────────
-    // `public` causes Solidity to auto-generate a `value()` getter.
-    // Initialised to 0 (EVM default; explicit here for clarity).
-    uint256 public value = 0;
-
-    // ── Event ────────────────────────────────────────────────────
-    // Emitted on every state change so off-chain listeners
-    // (frontends, indexers) can react without polling.
-    event ValueChanged(
-        uint256 indexed previousValue,
-        uint256 indexed newValue,
-        address indexed changedBy
-    );
-
-    /**
-     * @notice Increases `value` by 1.
-     * @dev    Overflow auto-reverts in ^0.8.0 (panic 0x11).
-     */
-    function increment() public {
-        uint256 previous = value;
-        value += 1;
-        emit ValueChanged(previous, value, msg.sender);
-    }
-
-    /**
-     * @notice Decreases `value` by 1.
-     * @dev    `require` gives a readable revert reason before the
-     *         implicit underflow guard would fire.
-     */
-    function decrement() public {
-        require(value > 0, "SimpleStorage: cannot decrement below zero");
-        uint256 previous = value;
-        value -= 1;
-        emit ValueChanged(previous, value, msg.sender);
-    }
-
-    /**
-     * @notice Returns the current value (mirrors the auto getter).
-     * @dev    `view` = read-only. Zero gas off-chain.
-     */
-    function getValue() public view returns (uint256) {
-        return value;
-    }
-}
-```
 
 ---
 
@@ -213,11 +152,8 @@ This project is licensed under the **MIT License** — see the contract's SPDX h
 
 ## 👤 Author
 
-**Your RAMKUMAR S**
+**RAMKUMAR S**
 
-- GitHub: [@your-github-username](https://github.com/your-github-RAMKUMARSUDHA)
-- LinkedIn: [your-linkedin-profile](https://linkedin.com/in/your-linkedin-https://www.linkedin.com/in/ramkumar-subramani-324160314/)
 
----
 
 <p align="center"><em>Built as a foundational exercise in Solidity smart contract development.</em></p>
